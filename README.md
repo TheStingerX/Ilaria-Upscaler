@@ -25,7 +25,7 @@ From there, you can utilize the various features of the project.
 
 ## 🌟 Features 🌟
 
-Ilaria RVC offers a range of features, including:
+Ilaria Upscaler offers a range of features, including:
 
 - 🖼️ **Image Upscaling and Restoration**:  
 Ilaria Upscaler uses the RealESRGANer class from the realesrgan module to upscale and restore images.
