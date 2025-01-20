@@ -1,12 +1,11 @@
-torch
-torchvision
+torch==1.13.1
+torchvision==0.14.1
 numpy
 opencv-python
 Pillow
-basicsr
+basicsr @ git+https://github.com/XPixelGroup/BasicSR.git
 facexlib
 gfpgan
 tqdm
 gradio
 realesrgan
-#PIL
