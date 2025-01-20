@@ -5,14 +5,12 @@ import os
 import random
 from basicsr.archs.rrdbnet_arch import RRDBNet
 from basicsr.utils.download_util import load_file_from_url
-
 from realesrgan import RealESRGANer
 from realesrgan.archs.srvgg_arch import SRVGGNetCompact
-
+from torchvision.transforms.functional import rgb_to_grayscale
 
 last_file = None
 img_mode = "RGBA"
-
 
 def realesrgan(img, model_name, denoise_strength, face_enhance, outscale):
     """Real-ESRGAN function to restore (and upscale) images.
@@ -171,14 +169,10 @@ def image_properties(img):
 
 def main():
     # Gradio Interface
-    with gr.Blocks(title="Real-ESRGAN Gradio Demo", theme="dark") as demo:
+    with gr.Blocks(theme=gr.themes.Default(primary_hue="pink", secondary_hue="rose"), title="Ilaria Upscaler 💖") as app:
 
         gr.Markdown(
             """# <div align="center"> Ilaria Upscaler 💖 </div>  
-
-        Do not use images over 750x750 especially with 4x the resolution upscaling, it will give you an error.
-        
-        Hugginface port of [Real-ESRGAN](https://github.com/xinntao/Real-ESRGAN).
         """
         )
 
@@ -214,11 +208,12 @@ def main():
         # Undocumented method to clear a component's value using Javascript
 
         gr.Markdown(
-            """Made with love by Ilaria 💖 | Support me on [Ko-Fi](https://ko-fi.com/ilariaowo) | Join [AI Hub](https://discord.gg/aihub)
+            """Made with love by Ilaria 💖 | Support me on [Ko-Fi](https://ko-fi.com/ilariaowo) | Using [Real-ESRGAN](https://github.com/xinntao/Real-ESRGAN).
+
         """
         )
 
-    demo.launch()
+    app.launch()
 
 
 if __name__ == "__main__":
