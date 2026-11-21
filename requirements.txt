@@ -1,0 +1,9 @@
+fastapi>=0.115,<1
+uvicorn[standard]>=0.30,<1
+python-multipart>=0.0.18,<1
+Pillow>=10.4,<13
+numpy>=1.26,<3
+spandrel>=0.4,<1
+spandrel-extra-arches>=0.2,<1
+# Install torch + torchvision for your CPU/CUDA platform BEFORE these requirements.
+# See README.md for official PyTorch installation instructions.

@@ -1,0 +1,52 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<meta name="theme-color" content="#0a0b16" />
+<meta name="description" content="Ilaria Upscaler 2.0 — Fast, Quality and Ultra image restoration." />
+<title>Ilaria Upscaler 2.0</title>
+<link rel="icon" type="image/png" sizes="192x192" href="/static/favicon.png?v=2" />
+<link rel="shortcut icon" href="/static/favicon.ico?v=2" />
+<link rel="apple-touch-icon" href="/static/apple-touch-icon.png?v=2" />
+<link rel="stylesheet" href="/static/style.css" />
+</head>
+<body>
+<div class="glow glow-a"></div><div class="glow glow-b"></div>
+<div class="layout">
+  <aside class="sidebar">
+    <div class="wordmark"><span class="brandmark">✦</span><span>Ilaria<span class="accent">.</span><small>UPSCALER STUDIO</small></span></div>
+    <div class="sidebar-section">WORKSPACE</div>
+    <nav aria-label="Main navigation"><a class="nav-item active" href="#studio"><span>◈</span> Studio <span class="nav-indicator"></span></a></nav>
+    <div class="sidebar-separator"></div>
+    <div class="sidebar-section">ENGINE STATUS</div>
+    <div class="engine-line"><span class="status-dot" id="fastDot"></span><span>Fast Engine</span><small id="fastStatus">Checking</small></div>
+    <div class="engine-line"><span class="status-dot" id="qualityDot"></span><span>Quality Engine</span><small id="qualityStatus">Checking</small></div>
+    <div class="engine-line"><span class="status-dot" id="ultraDot"></span><span>Ultra Engine</span><small id="ultraStatus">Checking</small></div>
+    <div class="sidebar-bottom"><div class="mini-tag">✧ v2.0 / Studio Edition</div><p>Created with love by <strong>Ilaria</strong></p><a href="https://ko-fi.com/ilariaowo" target="_blank" rel="noopener noreferrer">Support on Ko-fi ↗</a></div>
+  </aside>
+  <main id="studio" class="main">
+    <div class="topbar"><span class="breadcrumb">Workspace <span>/</span> Image Studio</span><div class="hardware" id="hardwareBadge">● Detecting hardware</div></div>
+    <header class="hero"><div class="eyebrow"><span class="twinkle">✦</span> NEXT-GEN IMAGE ENHANCEMENT</div><h1>Every pixel,<br /><em>reimagined.</em></h1><p>Make your images clearer, sharper, and more beautiful.<br />Three engines. One seamless studio.</p></header>
+    <section class="step" aria-labelledby="modeHeading"><div class="step-heading"><div><span class="step-index">01</span><h2 id="modeHeading">Choose your engine</h2></div><span class="hint">Select how you'd like to enhance</span></div>
+      <div class="mode-grid" role="group" aria-label="Upscaling engine">
+        <button class="mode-card active" data-mode="fast" type="button" aria-pressed="true"><span class="mode-top"><span class="mode-icon fast-icon">↗</span><span class="mode-badge">QUICK & CLEAN</span></span><strong>Fast <span class="mode-arrow">↗</span></strong><span class="mode-detail">Real-ESRGAN</span><span class="mode-desc">Sharp results, minimal waiting. Your everyday enhancer.</span><span class="mode-foot">⚡ Lightweight</span></button>
+        <button class="mode-card" data-mode="quality" type="button" aria-pressed="false"><span class="mode-top"><span class="mode-icon quality-icon">✧</span><span class="mode-badge">MORE CONTROL</span></span><strong>Quality <span class="mode-arrow">↗</span></strong><span class="mode-detail">ESRNet / HAT / custom</span><span class="mode-desc">Choose powerful restoration models tailored to your image.</span><span class="mode-foot">◈ Model library</span></button>
+        <button class="mode-card" data-mode="ultra" type="button" aria-pressed="false"><span class="mode-top"><span class="mode-icon ultra-icon">✺</span><span class="mode-badge">GPU INTENSIVE</span></span><strong>Ultra <span class="mode-arrow">↗</span></strong><span class="mode-detail">SeedVR2 Diffusion</span><span class="mode-desc">Advanced restoration for images that need extra attention.</span><span class="mode-foot" id="ultraFoot">✦ Requires setup</span></button>
+      </div>
+      <div class="notice" id="modeNotice" hidden role="status"></div>
+    </section>
+    <section class="step" aria-labelledby="uploadHeading"><div class="step-heading"><div><span class="step-index">02</span><h2 id="uploadHeading">Your image</h2></div><span class="hint">PNG, JPG or WebP · max 18 MB / 12 MP</span></div>
+      <div class="upload-container"><div id="dropzone" class="dropzone" role="button" tabindex="0" aria-label="Upload image"><input type="file" id="imageInput" accept="image/png,image/jpeg,image/webp" hidden /><div class="upload-illustration"><span class="diamond d1"></span><span class="diamond d2"></span><span class="big-upload">↑</span></div><h3>Drop your image here</h3><p>or <span class="inline-cta">browse your files</span> to get started</p><div class="file-note">Maximum 18 MB · Up to 12 megapixels</div></div>
+      <div id="previewArea" class="preview-area" hidden><div class="preview-header"><span><i class="live-dot"></i> Image preview</span><button type="button" id="replaceImage" class="text-button">Change image ↗</button></div><div class="compare" id="compare"><img id="originalImg" alt="Original image" /><div class="after-layer" id="afterLayer"><img id="resultImg" alt="Upscaled image" /></div><div class="compare-divider" id="compareDivider"><div class="compare-handle">‹ ›</div></div><span class="compare-tag left">BEFORE</span><span class="compare-tag right">AFTER</span><div class="compare-placeholder" id="comparePlaceholder">Your enhanced image will appear here</div><input aria-label="Compare before and after" type="range" min="0" max="100" value="50" id="compareRange" class="compare-range" disabled /></div><div class="file-meta"><div id="fileName" class="file-name"></div><div id="fileDimensions"></div></div></div></div>
+    </section>
+    <section class="step settings" aria-labelledby="settingsHeading"><div class="step-heading"><div><span class="step-index">03</span><h2 id="settingsHeading">Fine-tune your result</h2></div><span class="hint">Personalize the processing</span></div><div class="settings-grid"><label class="field"><span class="field-label">Upscaling model</span><select id="modelSelect" aria-label="Upscaling model"><option>Loading models…</option></select><small id="modelHint">Models are loaded on demand</small></label><label class="field"><span class="field-label">Output size <b id="scaleValue">4×</b></span><input type="range" id="scaleRange" min="1" max="4" step="0.5" value="4" /><div class="scale-markers"><span>1×</span><span>2×</span><span>3×</span><span>4×</span></div></label><label class="field"><span class="field-label">Memory optimization</span><select id="tileSelect"><option value="128">128 px · Low VRAM</option><option value="192" selected>192 px · Balanced</option><option value="256">256 px · Faster</option><option value="384">384 px · High VRAM</option></select><small id="tileHint">Adaptive tiled inference</small></label></div></section>
+    <div class="action-panel"><div class="action-caption"><span>✳</span><div><strong>Ready to transform?</strong><small id="readyText">Upload an image to begin</small></div></div><button type="button" id="upscaleBtn" class="upscale-button" disabled><span>✦</span> Upscale image <span class="button-arrow">→</span></button></div>
+    <div class="progress-box" id="progressBox" hidden role="status" aria-live="polite"><div class="progress-heading"><strong id="progressTitle">Processing your image</strong><span id="progressPercent">0%</span></div><div class="progress-track"><div id="progressBar"></div></div><p id="progressMessage">Starting...</p></div>
+    <div class="result-banner" id="resultBanner" hidden><div><span class="success-star">✦</span><strong>Transformation complete</strong><p id="resultInfo">Your image is ready.</p></div><a href="#" id="downloadBtn" class="download-button" download="ilaria-upscaled.png">Download PNG ↓</a></div>
+    <footer>ILARIA UPSCALER <span>✦</span> 2026 · <a href="https://github.com/TheStingerX/Ilaria-Upscaler" target="_blank" rel="noopener noreferrer">View on GitHub</a></footer>
+  </main>
+</div>
+<script src="/static/app.js" defer></script>
+</body>
+</html>
