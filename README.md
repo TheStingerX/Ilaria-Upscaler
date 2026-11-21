@@ -1,13 +1,3 @@
----
-title: Ilaria Upscaler 2.0
-emoji: ✨
-colorFrom: pink
-colorTo: purple
-sdk: docker
-app_port: 7860
-pinned: false
----
-
 <div align="center">
 
 <img src="web/favicon.png" alt="Ilaria Upscaler icon" width="112" />
